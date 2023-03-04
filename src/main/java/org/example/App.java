@@ -13,6 +13,8 @@ public class App {
     public void run() {
         System.out.println("== 명언 앱 ==");
 
+        long lastWiseSayingId = 1; // while문 안에 넣으면 계속 1로 초기화됨
+
         // '종료'가 입력될 때는 제외하고 계속 반복해야 함 -> while
         // 그렇지 않으면 enter만 쳐도 종료됨
        while (true) {
@@ -29,7 +31,8 @@ public class App {
                System.out.print("작가 : ");
                String authorName = sc.nextLine().trim();
 
-               System.out.println("1번 명언이 등록되었습니다.");
+               System.out.printf("%d번 명언이 등록되었습니다.\n", lastWiseSayingId);
+               lastWiseSayingId++; // 증가
            }
        }
     }
