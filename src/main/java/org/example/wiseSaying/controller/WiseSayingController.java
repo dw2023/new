@@ -1,5 +1,6 @@
 package org.example.wiseSaying.controller;
 
+import org.example.Container;
 import org.example.wiseSaying.entity.WiseSaying;
 
 import java.util.ArrayList;
@@ -7,14 +8,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class WiseSayingController {
-    private final Scanner sc; // final: 값 대입을 딱 한번만 하기 때문
     private long lastWiseSayingId; // while문 안에 넣으면 계속 0으로 초기화됨
     private final List<WiseSaying> wiseSayings; // 없어지지 않게 while문 밖에 만들기
     // final: ArrayList를 한 번만 만들면 되기 때문
 
     // 생성자 추가 (생성자 안에서 위 2개의 값 대입)
-    public WiseSayingController(Scanner sc) {
-        this.sc = sc; // Add 클래스의 sc를 매개변수로 받아서 쓰기
+    public WiseSayingController() {
         lastWiseSayingId = 0;
         wiseSayings = new ArrayList<>();
     }
@@ -22,9 +21,9 @@ public class WiseSayingController {
     public void write() {
         long id = lastWiseSayingId + 1;
         System.out.print("명언 : ");
-        String content = sc.nextLine().trim();
+        String content = Container.getScanner().nextLine().trim();
         System.out.print("작가 : ");
-        String authorName = sc.nextLine().trim();
+        String authorName = Container.getScanner().nextLine().trim();
 
         // WiseSaying 객체 만들기
         WiseSaying wiseSaying = new WiseSaying(id, content, authorName);
