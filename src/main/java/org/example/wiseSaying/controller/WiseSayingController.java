@@ -58,11 +58,13 @@ public class WiseSayingController {
         // 입력된 id와 일치하는 명언객체 찾기
         WiseSaying wiseSaying = findById(id);
 
+        if (wiseSaying == null) {
+            System.out.printf("%d번 명언은 존재하지 않습니다.\n", id);
+            return; // remove() 종료. return; 안넣으면 69번째 코드 실행됨.
+        }
+
         // 찾은 명언객체를 List에서 제거
         wiseSayings.remove(wiseSaying);
-
-        /* wiseSayings.remove(id - 1);
-        안되는 이유: 중간에 삭제된 명언이 있을 경우 index가 'id-1'이 아니다 */
 
         System.out.printf("%d번 명언이 삭제되었습니다.\n", id);
     }
