@@ -1,11 +1,11 @@
 package org.example.wiseSaying.controller;
 
 import org.example.Container;
+import org.example.Rq;
 import org.example.wiseSaying.entity.WiseSaying;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class WiseSayingController {
     private long lastWiseSayingId; // while문 안에 넣으면 계속 0으로 초기화됨
@@ -46,6 +46,17 @@ public class WiseSayingController {
         }
     }
 
-    public void remove() {
+    public void remove(Rq rq) {
+        int id = -1;
+
+        // '삭제'만 입력할 경우를 대비해 예외처리
+        try {
+            id = Integer.parseInt(rq.getParam("id")); // String을 int로 변환
+        }
+        catch (NumberFormatException e) {
+            System.out.println("id(정수)를 입력해주세요.");
+            return;
+        }
+        System.out.printf("%d번 명언이 삭제되었습니다.\n", id);
     }
 }

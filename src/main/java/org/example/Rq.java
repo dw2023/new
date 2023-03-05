@@ -23,6 +23,9 @@ public class Rq {
 
         for ( String paramStr : paramsBits ) {
             String[] paramStrBits = paramStr.split("=", 2); // "id=1" 을 "="기준으로 나누기
+
+            if (paramStrBits.length == 1) continue; // '='없이 '삭제?id'만 입력할 경우 대비
+
             String key = paramStrBits[0];
             String value = paramStrBits[1];
 
