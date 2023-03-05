@@ -40,4 +40,14 @@ public class Rq {
     public String getParam(String name) {
         return params.get(name);
     }
+
+    public int getIntParam(String name, int defaultValue) {
+        // '삭제'만 입력할 경우를 대비해 예외처리
+        try {
+            return Integer.parseInt(getParam(name)); // String을 int로 변환
+        } catch (NumberFormatException e) {
+
+        }
+        return defaultValue;// 이것을 catch문 안에 써도 됨
+    }
 }

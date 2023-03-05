@@ -47,13 +47,10 @@ public class WiseSayingController {
     }
 
     public void remove(Rq rq) {
-        int id = -1;
+        // "id"의 value를 정수화해서 리턴해주는 메서드 (실패 시 -1 리턴)
+        int id = rq.getIntParam("id", -1);
 
-        // '삭제'만 입력할 경우를 대비해 예외처리
-        try {
-            id = Integer.parseInt(rq.getParam("id")); // String을 int로 변환
-        }
-        catch (NumberFormatException e) {
+        if (id == -1) {
             System.out.println("id(정수)를 입력해주세요.");
             return;
         }
