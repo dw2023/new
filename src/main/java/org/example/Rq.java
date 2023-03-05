@@ -14,6 +14,11 @@ public class Rq {
         actionCode = commandBits[0];
 
         params= new HashMap<>(); // Map에 'id=1&authorName=홍길동' 저장
+
+        if (commandBits.length == 1) return;
+        // "종료", "등록" 등을 입력하면, ? 이후의 commandBits[1]이 없기 때문에 아래 코드부터 오류 발생
+        // commandBits[1]이 없을 때는 생성자 메서드 종료시키기
+
         String[] paramsBits = commandBits[1].split("&"); // 'id=1&authorName=홍길동'을 "&"로 나누기
 
         for ( String paramStr : paramsBits ) {

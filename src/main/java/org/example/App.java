@@ -20,25 +20,22 @@ public class App {
            System.out.print("명령) ");
            String command = Container.getScanner().nextLine().trim();
            // Container.getScanner(): 클래스 Container에서 sc 가져오기
+           Rq rq = new Rq(command);
 
-           if ( command.equals("종료")) {
-               systemController.exit();
-               break;
-           } else if (command.equals("등록")) {
-               wiseSayingController.write();
-           } else if (command.equals("목록")) {
-               wiseSayingController.list();
-           } else if (command.startsWith("삭제")) { // 명령어: '삭제?id=1&authorName=홍길동'
-               // 정리 시작
-
-               Rq rq = new Rq(command);
-               System.out.printf("actionCode : %s\n", rq.getActionCode());
-               System.out.printf("params.id : %s\n", rq.getParam("id"));
-               System.out.printf("params.authorName : %s\n", rq.getParam("authorName"));
-               System.out.printf("params.content : %s\n", rq.getParam("content"));
-
-               // 정리 끝
-               wiseSayingController.remove(); // command 넘겨주기
+           switch (rq.getActionCode()) {
+               case "종료":
+                   systemController.exit();
+                   return; // break;하면 switch문만 탈출하고 다시 while문 계속 반복하게됨
+                           // return;으로 run() 메서드 종료
+               case "등록":
+                   wiseSayingController.write();
+                   break;
+               case "목록":
+                   wiseSayingController.list();
+                   break;
+               case "삭제":
+                   wiseSayingController.remove();
+                   break;
            }
        }
     }
